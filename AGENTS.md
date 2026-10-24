@@ -20,7 +20,7 @@
 - Both apps load env via `import 'dotenv/config'`. Backend needs `PORT`, `CLIENT_URL` (CORS expects
   the Vite origin http://localhost:5173), `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
 - `backend/scripts/getToken.js <email> <password>` (prints a JWT for manual API testing)
-  additionally requires `SUPABASE_ANON_KEY` — that var is missing from `.env.example`.
+  additionally requires `SUPABASE_ANON_KEY` (present in `.env.example`; needs the publishable key).
 - Frontend needs `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_API_URL`
   (http://localhost:5000/api). Vite has no dev proxy — the frontend calls the API cross-origin
   directly.
@@ -52,6 +52,7 @@
 
 ## Gotchas
 
-- This directory is not a git repository — no history or diffs; don't rely on git.
+- Git is set up with remote `origin` = github.com/Sean-Diaz/LogiKeep (branch `main`, tracking
+  `origin/main`). Always confirm `.env` stays untracked before committing.
 - Supabase secret keys (`sb_secret_…` / service role) must never appear in the frontend, its
   `.env`, or `.env.example`. Frontend clients use only the publishable anon key.
